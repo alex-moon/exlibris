@@ -1,1 +1,3 @@
-python /var/www/exlibris/manage.py runfcgi method=threaded host=127.0.0.1 port=8080
+#!/bin/bash
+if [ -a /var/www/exlibris/exlibris.pid ]; then cat /var/www/exlibris/exlibris.pid | xargs kill; fi
+python /var/www/exlibris/manage.py runfcgi method=threaded host=127.0.0.1 port=8080 pidfile=/var/www/exlibris/exlibris.pid
