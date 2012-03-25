@@ -114,6 +114,7 @@ INSTALLED_APPS = (
     'books',
     'people',
     'django_mongodb_engine',
+    'djangotoolbox',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
