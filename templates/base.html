@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{% block pagetitle %}{% endblock %} | exlibris</title>
+</head>
+<body>
+    <header>
+        <h1>exlibris</h1>
+        <form method="post" action="/login">
+            <label for="login-email">email address</label>
+                <input type="text" name="email" id="login-email">
+            <label for="login-password">password</label>
+                <input type="text" name="password" id="login-password">
+        </form>
+    </header>
