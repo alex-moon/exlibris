@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>{% block pagetitle %}{% endblock %} | exlibris</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="/static/fonts.css">
+<link rel="stylesheet" href="/static/style.css">
+<title>{% block pagetitle %}{{ pagetitle }}{% endblock %} | exlibris</title>
 </head>
 <body>
     <header>
@@ -11,5 +14,26 @@
                 <input type="text" name="email" id="login-email">
             <label for="login-password">password</label>
                 <input type="text" name="password" id="login-password">
+            <input type="submit" value="login">
         </form>
     </header>
+    <aside id="register">
+        <form method="post" action="/register">
+            <label for="register-email">email address</label>
+                <input type="text" name="email" id="register-email">
+            <label for="register-password">password</label>
+                <input type="password" name="password" id="register-password">
+            <label for="confirm-password">confirm password</label>
+                <input type="password" name="confirm-password" id="confirm-password">
+            <input type="submit" value="register">
+        </form>
+    </aside>
+    <div id="content">
+    {% block content %}{{ content|safe }}{% endblock %}
+    </div>
+    <aside id="charts">left column</aside>
+    <footer>
+        <span class="exlibris">exlibris</span> is so awesome you don't even know what's coming at you.
+    </footer>
+</body>
+</html>

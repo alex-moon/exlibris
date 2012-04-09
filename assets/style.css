@@ -1,0 +1,40 @@
+body {
+    margin: 0;
+    background-image: url('/static/background.gif');
+    font-family: Calluna;
+}
+
+header {
+    height: 52px;
+    /*background-image: linear-gradient(bottom, #323232 0%, #121212 40%);
+    background-image: -moz-linear-gradient(bottom, #323232 0%, #121212 40%);*/
+    background-image: -webkit-linear-gradient(bottom, #323232 0%, #121212 40%); 
+    margin: 0;
+}
+
+header h1 {
+    float: left;
+    margin: 0;
+    padding: 8px 12px;
+    color: white;
+    font-family: MuseoSlab;
+}
+
+#register {
+    width: 20%;
+    float: right;
+}
+
+#content {
+    width: 50%;
+    margin: 0 auto;
+}
+
+#charts {
+    width: 20%;
+    float: left;
+}
+
+.exlibris {
+    font-family: MuseoSlab;
+}
