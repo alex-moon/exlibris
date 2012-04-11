@@ -92,7 +92,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.csrf.CsrfResponseMiddleware',
 )
+
+LOGIN_REDIRECT_URL = '/'
 
 ROOT_URLCONF = 'exlibris.urls'
 

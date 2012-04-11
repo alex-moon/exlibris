@@ -9,25 +9,38 @@
 <body>
     <header>
         <h1>exlibris</h1>
-        <form method="post" action="/login">
+        {% if user.is_authenticated %}
+        <p id="header-login">You are currently logged in as {{ user.username }} <span class="sep">|</span> <a href="/logout/">Log out</a></p>
+        {% else %}
+        <form method="post" action="/login/" id="header-login">
             <label for="login-email">email address</label>
-                <input type="text" name="email" id="login-email">
+                <input type="text" name="username" id="login-email">
             <label for="login-password">password</label>
-                <input type="text" name="password" id="login-password">
+                <input type="password" name="password" id="login-password">
             <input type="submit" value="login">
         </form>
+        {% endif %}
     </header>
+    {% if user.is_authenticated %}
+    <aside id="account-sidebar">
+        <a href="/profile/">My Account</a>
+    </aside>
+    {% else %}
     <aside id="register">
-        <form method="post" action="/register">
+        <form method="post" action="/register/">
             <label for="register-email">email address</label>
                 <input type="text" name="email" id="register-email">
+                <br>
             <label for="register-password">password</label>
                 <input type="password" name="password" id="register-password">
+                <br>
             <label for="confirm-password">confirm password</label>
                 <input type="password" name="confirm-password" id="confirm-password">
+                <br>
             <input type="submit" value="register">
         </form>
     </aside>
+    {% endif %}
     <div id="content">
     {% block content %}{{ content|safe }}{% endblock %}
     </div>
