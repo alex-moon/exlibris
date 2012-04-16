@@ -13,6 +13,7 @@
         <p id="header-login">You are currently logged in as {{ user.username }} <span class="sep">|</span> <a href="/logout/">Log out</a></p>
         {% else %}
         <form method="post" action="/login/" id="header-login">
+            {% csrf_token %}
             <label for="login-email">email address</label>
                 <input type="text" name="username" id="login-email">
             <label for="login-password">password</label>
@@ -23,7 +24,8 @@
     </header>
     {% if user.is_authenticated %}
     <aside id="account-sidebar">
-        <a href="/profile/">My Account</a>
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/account/">My Account</a>
     </aside>
     {% else %}
     <aside id="register">

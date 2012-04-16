@@ -29,7 +29,7 @@ TIME_ZONE = 'Europe/London'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
-SITE_ID = u'4f6c4acc2267510a8b00001d'
+SITE_ID = u'4f8c96794d03063bc0d988cf'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -95,7 +95,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfResponseMiddleware',
 )
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 ROOT_URLCONF = 'exlibris.urls'
 
@@ -110,14 +110,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'books',
-    'people',
     'django_mongodb_engine',
     'djangotoolbox',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
+    'books',
 )
 
 # A sample logging configuration. The only tangible logging
