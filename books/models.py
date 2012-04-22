@@ -46,7 +46,7 @@ class BookCollection(models.Model):
     def getRecordList(self):
         record_list = []
         for book_id in self.books:
-            text = Text.objects.raw_query({ 'editions': { '$elemMatch': {  'books' : { '$elemMatch' : { 'id' : book_id } } } } })
+            text = Text.objects.raw_query({'editions.books.id' : book_id })
             text = text[0]
             # edition = next(edition for edition in editions if book_id in (book['id'] for book in edition['books']))
             # book = next(book for book in edition['books'] if book['id'] == book_id)
