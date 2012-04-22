@@ -3,10 +3,16 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.template import RequestContext
 
+from books.models import Book, Edition, Text, Person
+
 def dashboard(request):
-    return render(request, 'dashboard.html')
+    person = Person.objects.get(user=request.user)
+    records = person.collections[0].getRecordList()
+    return render(request, 'dashboard.html', {'person':person, 'records':records})
 
 def home(request):
+    if request.user.is_authenticated():
+        return redirect('/dashboard/')
     return render(request, 'home.html')
     
 def register(request):

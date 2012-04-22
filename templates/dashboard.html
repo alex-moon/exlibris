@@ -4,5 +4,18 @@
 
 {% block content %}
 <h2>Dashboard</h2>
-<p>This is your dashboard</p>
+<p><b>{{ user.username}}</b> &mdash; {{ person.tagline }}</p>
+
+<h3>My Locations</h3>
+<img src="{{ STATIC_URL }}mock-map.png" />
+
+<h3>My Collections</h3>
+    {% for collection in person.collections %}
+    <h4>{{ collection.name }}</h4>
+        <ul>
+        {% for record in records %}
+            <li>pine{{ record.title }}apple</li>
+        {% endfor %}
+        </ul>
+    {% endfor %}
 {% endblock %}
