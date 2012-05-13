@@ -6,16 +6,26 @@
 <h2>Dashboard</h2>
 <p><b>{{ user.username}}</b> &mdash; {{ person.tagline }}</p>
 
-<h3>My Locations</h3>
 <img src="{{ STATIC_URL }}mock-map.png" />
 
-<h3>My Collections</h3>
     {% for collection in person.collections %}
     <h4>{{ collection.name }}</h4>
-        <ul>
-        {% for record in records %}
-            <li>pine{{ record.title }}apple</li>
+        <table class="collection">
+        <tr><th>Title</th><th>Author</th><th>Published</th><th></th></tr>
+        {% for record in collection.records %}
+            <tr>
+                <td><a href="/text/{{ record.text_slug }}">{{ record.title }}</a></td>
+                <td>{{ record.author }}</td>
+                <td style="width: 15em">{{ record.publisher }}, {{ record.published_date|date:"M Y" }}</td>
+                <td class="action">
+                    <ul>
+                        <li><a href="/books/edit/{{ record.book_id }}">Edit</a></li>
+                        <li><a href="javascript:xajax_deleteBook('{{ record.book_id }}')">Delete</a></li>
+                    </ul>
+                </td>
+            </tr>
         {% endfor %}
-        </ul>
+        <tr><td colspan="3"></td><td><a href="/books/add/">Add a new book</a></td></tr>
+        </table>
     {% endfor %}
 {% endblock %}

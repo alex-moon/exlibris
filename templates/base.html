@@ -2,11 +2,15 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script type="text/javascript" src="{{ STATIC_URL }}jquery.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}jquery.autocomplete.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}init.js"></script>
 <link rel="stylesheet" href="/static/fonts.css">
 <link rel="stylesheet" href="/static/style.css">
 <title>{% block pagetitle %}{{ pagetitle }}{% endblock %} | exlibris</title>
 </head>
 <body>
+    <div id="wrapper">
     <header>
         <h1>exlibris</h1>
         {% if user.is_authenticated %}
@@ -27,7 +31,7 @@
         <a href="/dashboard/">Dashboard</a>
     </aside>
     {% else %}
-    <aside id="register">
+    <aside id="account-sidebar">
         <form method="post" action="/register/">
             <label for="register-email">email address</label>
                 <input type="text" name="email" id="register-email">
@@ -45,7 +49,8 @@
     <div id="content">
     {% block content %}{{ content|safe }}{% endblock %}
     </div>
-    <aside id="charts">left column</aside>
+    <!--aside id="charts">left column</aside-->
+    </div><!-- wrapper -->
     <footer>
         <span class="exlibris">exlibris</span> is so awesome you don't even know what's coming at you.
     </footer>

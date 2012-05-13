@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %}Add a Book | Let people know you have a book to borrow or buy{% endblock %}
+
+{% block content %}
+<h2>Add a Book</h2>
+<p>Fill out the details of a book you have to add it to your <span class="exlibris">exlibris</span> collection.</p>
+
+<form method="post">
+<p><strong>First,</strong> type the title of the book to find out if we already know about it. Suggestions will appear automatically
+as you type. If you see the book you have, select it. Otherwise, you may have to fill out a few additional data about
+your book.</p>
+<div class="autocomplete-field">
+<script type="text/javascript">
+$(function(){
+    $('#text_title').autocomplete({
+        'serviceUrl' : '/json/text/title'
+    });
+});
+</script>
+<input type="text" class="clean" value="e.g. Catch-22" name="q" id="text_title" />
+<input type="button" value="Select" />
+</div>
+
+
+{% endblock %}

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from djangotoolbox.fields import ListField, EmbeddedModelField, DictField
 from django_mongodb_engine.contrib import MongoDBManager
+import re
 
 # BOOKS
 
@@ -9,11 +10,19 @@ class Text(models.Model):
     author = models.CharField(max_length=64)
     title = models.CharField(max_length=128)
     editions = ListField(EmbeddedModelField('Edition'))
+    slug = models.CharField(max_length=128)
     
     objects = MongoDBManager() 
     
     def __unicode__(self):
         return self.title
+    
+    def generateSlug(self):
+        self.slug = re.sub('[^a-z0-9]+', '-', ('%s %s' % (self.author, self.title)).lower())
+    
+    def saveSlug(self):
+        self.generateSlug()
+        self.save()
 
 class Edition(models.Model):
     published_date = models.DateField()
@@ -43,6 +52,9 @@ class BookCollection(models.Model):
     location = EmbeddedModelField('Location')
     books = ListField(models.ForeignKey(Book))
     
+    def loadRecordList(self):
+        self.records = self.getRecordList()
+    
     def getRecordList(self):
         record_list = []
         for book_id in self.books:
@@ -61,7 +73,9 @@ class BookCollection(models.Model):
                             'published_date' : edition.published_date,
                             'condition' : book.condition,
                             'notes' : book.notes,
-                            'available' : book.available
+                            'available' : book.available,
+                            'book_id' : book.id,
+                            'text_slug' : text.slug,
                         }
                         break
                 if book_record is not None:
