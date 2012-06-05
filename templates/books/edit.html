@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block pagetitle %}Add a Book | Let people know you have a book to borrow or buy{% endblock %}
+
+{% block content %}
+
+<h2>Edit a Book</h2>
+<p>Use the form below to change details for a book you own.</p>
+
+<form method="post" id="edit-book">
+{{ form.id }}
+<div class="input z">{{ form.text_form.title.label_tag }}{{ form.text_form.title }}</div>
+<div class="input">{{ form.text_form.author.label_tag }}{{ form.text_form.author }}</div>
+<div class="input z">{{ form.edition_form.published_date.label_tag }}{{ form.edition_form.published_date }}</div>
+<div class="input">{{ form.edition_form.publisher.label_tag }}{{ form.edition_form.publisher }}</div>
+<div class="input z">{{ form.condition.label_tag }}{{ form.condition }}</div>
+<div class="input">{{ form.available.label_tag }}{{ form.available }}</div>
+<div class="input z">{{ form.notes.label_tag }}{{ form.notes }}</div>
+<div class="submit"><input type="submit" value="Submit" /></div>
+</form>
+
+{% endblock %}

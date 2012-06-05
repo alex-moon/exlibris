@@ -4,13 +4,12 @@ from django.contrib.auth import authenticate, login
 from django.template import RequestContext
 
 from books.models import Book, Edition, Text, Person
+from books import forms
 
 import json
 
 def dashboard(request):
     person = Person.objects.get(user=request.user)
-    for collection in person.collections:
-        collection.loadRecordList()
     return render(request, 'dashboard.html', {'person':person})
 
 def home(request):
@@ -28,8 +27,14 @@ def register(request):
     login(request, user)
     return redirect('/dashboard/')
     
-def addBook(request):
+def add_book(request):
+    # generate form and pass it to add yeeeeeaaaaah!
     return render(request, 'books/add.html')
+
+def edit_book(request, book_id):
+    book = Book.objects.get(id=book_id)
+    form = forms.BookForm(instance=book)
+    return render(request, 'books/edit.html', {'form' : form })
     
 def ajaxSearch(request, model, field):
     options = {
@@ -45,6 +50,7 @@ def ajaxSearch(request, model, field):
 
 def textTitleSearch(query):
     # todo: split query into words and OR these - something more sophisticated would be even better
+    # doesn't mongo have a full text search for this?
     results = Text.objects.filter(title__iregex=query)
     suggestions = [result.title for result in results]
     data = [result.id for result in results]

@@ -136,3 +136,33 @@ footer {
     padding: 20px;
     text-align: center;
 }
+
+/* FORMS */
+
+form {
+    
+}
+
+.input {
+    padding: 0.2em;
+    clear: left;
+}
+
+.z {
+    background: rgba(25, 25, 25, 0.1);
+}
+
+.submit input {
+    margin: 1em 0 0 90%;
+}
+
+.input label {
+    width: 25%;
+    float: left;
+    display: block;
+}
+
+.input input {
+    display: block;
+    width: 70%;
+}
