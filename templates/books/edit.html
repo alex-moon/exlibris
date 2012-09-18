@@ -8,6 +8,7 @@
 <p>Use the form below to change details for a book you own.</p>
 
 <form method="post" id="edit-book">
+{% csrf_token %}
 {{ form.id }}
 <div class="input z">{{ form.text_form.title.label_tag }}{{ form.text_form.title }}</div>
 <div class="input">{{ form.text_form.author.label_tag }}{{ form.text_form.author }}</div>
@@ -16,7 +17,7 @@
 <div class="input z">{{ form.condition.label_tag }}{{ form.condition }}</div>
 <div class="input">{{ form.available.label_tag }}{{ form.available }}</div>
 <div class="input z">{{ form.notes.label_tag }}{{ form.notes }}</div>
-<div class="submit"><input type="submit" value="Submit" /></div>
+<div class="submit"><input name="submit" type="submit" value="Submit" /></div>
 </form>
 
 {% endblock %}

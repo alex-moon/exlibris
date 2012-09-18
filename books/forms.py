@@ -12,7 +12,7 @@ class TextForm(forms.ModelForm):
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-    def __init__(self, instance):
+    def __init__(self, post, instance):
         self.edition_form = EditionForm(instance=instance.edition)
         self.text_form = TextForm(instance=instance.edition.text)
         super(BookForm, self).__init__(instance=instance)

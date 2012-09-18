@@ -32,8 +32,18 @@ def add_book(request):
     return render(request, 'books/add.html')
 
 def edit_book(request, book_id):
-    book = Book.objects.get(id=book_id)
-    form = forms.BookForm(instance=book)
+    # book = Book.objects.get(id=book_id)
+    person = Person.objects.raw_query({'collections.books.id':book_id})[0]
+    book_to_edit = None
+    for collection in person.collections:
+        for book in collection.books:
+            if book.id == book_id:
+                book_to_edit = book
+                break
+        if book_to_edit is not None:
+            break
+
+    form = forms.BookForm(request.POST, instance=book_to_edit)
     return render(request, 'books/edit.html', {'form' : form })
     
 def ajaxSearch(request, model, field):
